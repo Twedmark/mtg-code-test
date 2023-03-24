@@ -1,33 +1,36 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../app/hooks";
+import { addCards } from "../../cardSlice/cardSlice";
+import routes from "../../services/service";
+import SearchFrom from "./../../components/form/SearchFrom";
+import styled from "styled-components";
 
-import logo from "./../../logo.svg";
-import "./../../App.css";
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
 
-function Search(props: any) {
-  const { setCard } = props;
+function Search() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   async function fetchTest() {
-    const data = await fetch("https://api.scryfall.com/cards/random", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const response = await data.json();
-    console.log(props);
-    setCard(response);
+    const cardQuery = "c=green+pow=3+type=creature+r>=rare";
+    const cards = await routes.search(cardQuery);
+    dispatch(addCards(cards));
     navigate("/result");
-    console.log(response);
   }
 
   return (
     <div className="App">
-      Search
-      <img src={logo} className="App-logo" alt="logo" />
-      <button onClick={fetchTest}>fetch</button>
+      <SearchFrom />
+
+      <Button onClick={fetchTest}>fetch test</Button>
     </div>
   );
 }
