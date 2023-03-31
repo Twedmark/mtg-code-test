@@ -8,11 +8,10 @@ export const FormContainer = styled.div`
 `;
 
 export const Grid = styled.div`
+  width: 100%;
   display: grid;
   align-content: center;
   margin: 1rem;
-  width: 100%;
-  max-width: 50rem;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1.5rem;
   & > section {
@@ -60,6 +59,9 @@ const Button = styled.button`
   border-radius: 0.5rem;
   &:focus {
     outline: transparent;
+  }
+  &:active {
+    transform: scale(0.95);
   }
 `;
 

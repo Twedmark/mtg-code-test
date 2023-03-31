@@ -1,37 +1,28 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../app/hooks";
-import { addCards } from "../../cardSlice/cardSlice";
-import routes from "../../services/service";
+import { useState } from "react";
 import SearchFrom from "./../../components/form/SearchFrom";
+
 import styled from "styled-components";
 
-const Button = styled.button`
-  color: palevioletred;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
+export const Title = styled.h1`
+  display: flex;
+  margin: 0.5rem;
+  justify-content: center;
+  font-size: 2rem;
 `;
 
 function Search() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  async function fetchTest() {
-    const cardQuery = "c=green+pow=3+type=creature+r>=rare";
-    const cards = await routes.search(cardQuery);
-    dispatch(addCards(cards));
-    navigate("/result");
-  }
-
+  const [loading, setLoading] = useState(false);
   return (
-    <div className="App">
-      <SearchFrom />
-
-      <Button onClick={fetchTest}>fetch test</Button>
-    </div>
+    <>
+      {loading ? (
+        <p>laddar</p>
+      ) : (
+        <>
+          <Title>Search</Title>
+          <SearchFrom setLoading={setLoading} />
+        </>
+      )}
+    </>
   );
 }
 

@@ -9,4 +9,4 @@ export const colors = {
   black: "rgb(30, 30, 30)",
   red: "rgb(223, 86, 52)",
   green: "rgb(80, 171, 100)",
-};
+} as const;

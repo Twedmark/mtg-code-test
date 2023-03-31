@@ -8,6 +8,12 @@ import { Provider } from "react-redux";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
+// make the store subscribe to localStorage
+store.subscribe(() => {
+  localStorage.setItem("reduxState", JSON.stringify(store.getState()));
+});
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
