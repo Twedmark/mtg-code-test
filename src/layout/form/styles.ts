@@ -49,6 +49,9 @@ export const NewImageButton = styled.button`
   &:focus {
     outline: transparent;
   }
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const Button = styled.button`

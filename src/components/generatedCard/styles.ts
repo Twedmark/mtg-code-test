@@ -31,7 +31,7 @@ export const Background = styled.div`
   height: 100%;
   border-radius: 0.3rem;
   background-color: rgb(42, 37, 57);
-  padding: 1.4rem 1.7rem;
+  padding: 7% 8%;
   color: black;
 `;
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { RootState, useAppSelector } from "../../app/store";
+import { RootState, useAppSelector } from "../../redux/store";
 import { changeCardEvent } from "../../utils/utils";
 import { ButtonsContainer, Image, Title } from "./styles";
 

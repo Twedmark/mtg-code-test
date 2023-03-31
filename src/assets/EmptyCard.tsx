@@ -11,10 +11,10 @@ const CardBorder = styled.div`
 
 const MountainBase = styled.div`
   position: absolute;
-  bottom: 2.5rem;
-  left: 2.5rem;
+  bottom: 23%;
+  left: 17%;
   background-color: rgb(238, 238, 238);
-  width: calc(100% - 5rem);
+  width: 66%;
   height: 20%;
 `;
 

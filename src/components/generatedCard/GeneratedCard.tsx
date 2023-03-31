@@ -1,5 +1,5 @@
 import EmptyCard from "../../assets/EmptyCard";
-import { RootState, useAppSelector } from "../../app/store";
+import { RootState, useAppSelector } from "../../redux/store";
 import {
   Title,
   Background,

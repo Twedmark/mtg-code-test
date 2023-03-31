@@ -14,7 +14,6 @@ function Result() {
           <Title>Result</Title>
         </section>
         <GeneratedCard />
-
         <CardCarousel />
         <ColorRepresentation />
       </Grid>

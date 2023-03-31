@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { cardsReducer, searchReducer } from "../cardSlice/searchSlice";
+import { cardsReducer, searchReducer } from "./cardSlice/searchSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 const LocalStore = JSON.parse(localStorage.getItem("reduxState") || "{}");

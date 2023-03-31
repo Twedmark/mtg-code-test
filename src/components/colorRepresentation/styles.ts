@@ -19,8 +19,16 @@ export const ColorCircle = styled.div<{
   font-size: 1.5rem;
   border-radius: 50%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: ${(props) => (props.prop.color === "White" ? "Black" : "White")};
+  color: ${(props) => (props.prop.color === "W" ? "Black" : "White")};
   background-color: ${(prop) => prop.prop.backgroundColor};
+`;
+
+export const ColorCircleHover = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 `;

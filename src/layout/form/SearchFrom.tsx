@@ -12,8 +12,12 @@ import EmptyCard from "../../assets/EmptyCard";
 import routes from "../../services/service";
 import { errorStyle } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
-import { RootState, useAppDispatch, useAppSelector } from "../../app/store";
-import { addCards, setAll, resetSearch } from "../../cardSlice/searchSlice";
+import { RootState, useAppDispatch, useAppSelector } from "../../redux/store";
+import {
+  addCards,
+  setAll,
+  resetSearch,
+} from "../../redux/cardSlice/searchSlice";
 
 type Props = {
   setLoading: React.Dispatch<React.SetStateAction<any>>;
@@ -170,7 +174,6 @@ export default function From(props: Props) {
                   ""
                 )}
               </section>
-
               <section>
                 <Reset type="reset">Clear</Reset>
               </section>

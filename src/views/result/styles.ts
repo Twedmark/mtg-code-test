@@ -38,7 +38,6 @@ export const Grid = styled.div`
   & > section:nth-child(4) {
     grid-area: d;
   }
-
   & > section > input,
   select {
     height: 1.5rem;
@@ -47,6 +46,13 @@ export const Grid = styled.div`
       outline: transparent;
       border: 2px solid #000;
     }
+  }
+  /* mediaquery at below 600px */
+  @media (max-width: 600px) {
+    grid-template:
+      ". a a ."
+      "b b c c"
+      "d d d d" auto / 1fr 1fr 1fr 1fr;
   }
 `;
 
