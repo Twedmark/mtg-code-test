@@ -1,48 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "../../redux/store";
-import { ColorContainer, ColorCircle, ColorCircleHover } from "./styles";
-
-interface Count {
-  mono: number;
-  multicolor: {
-    [color: string]: number;
-  };
-}
-
-interface CountByColor {
-  [color: string]: Count;
-}
+import { ColorContainer, ColorCircle } from "./styles";
 
 interface ColorCount {
   color: string;
-  count: Count;
+  count: number;
   backgroundColor: string | undefined;
 }
 
 function ColorRepresentation(): JSX.Element {
   const cards = useAppSelector((state: RootState) => state.cardStore.cards);
   const [countAndColor, setCountAndColor] = useState<ColorCount[]>([]);
-  const [hover, setHover] = useState(false);
 
   useEffect(() => {
     const colors = ["W", "U", "B", "R", "G"];
-    const newCount: CountByColor = {};
 
-    for (const color of colors) {
-      newCount[color] = { mono: 0, multicolor: {} };
-      for (const otherColor of colors.filter((c) => c !== color)) {
-        newCount[color].multicolor[otherColor] = 0;
-      }
-    }
+    const newCount = Object.fromEntries(colors.map((color) => [color, 0]));
 
     cards.forEach((card) => {
       card.color_identity?.forEach((color: string) => {
-        const count = newCount[color];
-        const multicolor = count.multicolor;
-        count.mono += 1;
-        card.color_identity.forEach((c: string) => {
-          if (c !== color) multicolor[c] += 1;
-        });
+        newCount[color] += 1;
       });
     });
 
@@ -62,35 +39,17 @@ function ColorRepresentation(): JSX.Element {
     );
   }, [cards]);
 
-  function multiColor(count: Count) {
-    if (!count.multicolor) {
-      return null;
-    }
-    return Object.keys(count.multicolor).map((color, index) => {
-      const countForColor = count.multicolor[color];
-      return (
-        <ColorCircleHover key={index} className="color">
-          {color} + {countForColor}
-        </ColorCircleHover>
-      );
-    });
-  }
+  const ColorCircles = countAndColor.map((colorCount) => {
+    return (
+      <ColorCircle key={colorCount.color} prop={colorCount}>
+        {Math.round((colorCount.count / cards.length) * 100) + "%"}
+      </ColorCircle>
+    );
+  });
+
   return (
     <section>
-      <ColorContainer>
-        {countAndColor.map((colorCount) => (
-          <ColorCircle
-            key={colorCount.color}
-            prop={colorCount}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            {!hover
-              ? Math.round((colorCount.count.mono / cards.length) * 100) + "%"
-              : multiColor(colorCount.count)}
-          </ColorCircle>
-        ))}
-      </ColorContainer>
+      <ColorContainer>{ColorCircles}</ColorContainer>
     </section>
   );
 }

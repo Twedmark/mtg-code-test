@@ -25,10 +25,3 @@ export const ColorCircle = styled.div<{
   color: ${(props) => (props.prop.color === "W" ? "Black" : "White")};
   background-color: ${(prop) => prop.prop.backgroundColor};
 `;
-
-export const ColorCircleHover = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-`;
